@@ -1,11 +1,13 @@
 #include "glut.h"
 #include <math.h>
 
+#define WIDTH 500
+#define HEIGHT 500
 #define	PI 3.141593
 
 using namespace std;
 
-void init(void) { //pinta o fundo de preto 
+void colocaBackground(void) { //pinta o fundo de preto 
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 }
 
@@ -34,11 +36,22 @@ void losango_bandeira() { // losango interno no medio plano
 }
 
 void circulo_bandeira() { // bola azul 
+	float raio, inicialX, inicialY, ang;
+	float x, y;
+
+	inicialX = 0.0;
+	inicialY = 0.0;
+	raio = 0.25;
+
 	glColor3f(0.0, 0.0, 1.0);
 
-	glBegin(GL_LINE_LOOP);
-	for (double i = 0; i < 2 * PI; i += PI / 6)
-		glVertex3f(cos(i) * 64, sin(i) * 64, 0.0);
+	glBegin(GL_POLYGON);
+	for (int i = 0; i < 360; i++) {
+		ang = (i * PI) / 180.0;
+		x = inicialX + (cos(ang) * raio);
+		y = inicialY + (sin(ang) * raio);
+		glVertex2f(x, y);
+	}
 	glEnd();
 }
 
@@ -51,10 +64,12 @@ void Desenha() {
 }
 
 int main(int argc, char** argv) {
+	glutInit(&argc, argv);
+	glutInitWindowSize(WIDTH, HEIGHT);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutCreateWindow("Bandeira do Brasil");
 	glutDisplayFunc(Desenha);
-	init();
+	colocaBackground();
 	glutMainLoop();
 	return 0;
 }
