@@ -5,9 +5,31 @@
 #define HEIGHT 500
 #define	PI 3.141593
 
-using namespace std;
+void colocaBackground();
+void retangulo_bandeira();
+void losango_bandeira();
+void circulo_bandeira();
 
-void colocaBackground(void) { //pinta o fundo de preto 
+void Desenha() {
+	glClear(GL_COLOR_BUFFER_BIT);
+	retangulo_bandeira();
+	losango_bandeira();
+	circulo_bandeira();
+	glFlush();
+}
+
+int main(int argc, char** argv) {
+	glutInit(&argc, argv);
+	glutInitWindowSize(WIDTH, HEIGHT);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutCreateWindow("Bandeira do Brasil");
+	colocaBackground();
+	glutDisplayFunc(Desenha);
+	glutMainLoop();
+	return 0;
+}
+
+void colocaBackground() { //pinta o fundo de preto 
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 }
 
@@ -55,21 +77,3 @@ void circulo_bandeira() { // bola azul
 	glEnd();
 }
 
-void Desenha() {
-	glClear(GL_COLOR_BUFFER_BIT);
-	retangulo_bandeira();
-	losango_bandeira();
-	circulo_bandeira();
-	glFlush();
-}
-
-int main(int argc, char** argv) {
-	glutInit(&argc, argv);
-	glutInitWindowSize(WIDTH, HEIGHT);
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-	glutCreateWindow("Bandeira do Brasil");
-	glutDisplayFunc(Desenha);
-	colocaBackground();
-	glutMainLoop();
-	return 0;
-}
