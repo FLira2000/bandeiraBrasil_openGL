@@ -50,9 +50,9 @@ void losango_bandeira() { // losango interno no medio plano
 	
 	glBegin(GL_POLYGON);
 	glVertex2f(0.0, 0.40);
-	glVertex2f(-0.75, 0.0);
+	glVertex2f(-1.0, 0.0);
 	glVertex2f(0.0, -0.40);
-	glVertex2f(0.75, 0.0);
+	glVertex2f(1.0, 0.0);
 	glEnd();
 
 }
